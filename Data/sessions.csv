@@ -1,0 +1,71 @@
+meeting_key,session_key,location,date_start,date_end,session_type,session_name,country_key,country_code,country_name,circuit_key,circuit_short_name,gmt_offset,year
+1141,7768,Sakhir,2023-03-04T15:00:00+00:00,2023-03-04T16:00:00+00:00,Qualifying,Qualifying,36,BRN,Bahrain,63,Sakhir,03:00:00,2023
+1142,7775,Jeddah,2023-03-18T17:00:00+00:00,2023-03-18T18:00:00+00:00,Qualifying,Qualifying,153,KSA,Saudi Arabia,149,Jeddah,03:00:00,2023
+1143,7783,Melbourne,2023-04-01T05:00:00+00:00,2023-04-01T06:00:00+00:00,Qualifying,Qualifying,5,AUS,Australia,10,Melbourne,11:00:00,2023
+1207,9064,Baku,2023-04-28T13:00:00+00:00,2023-04-28T14:00:00+00:00,Qualifying,Qualifying,30,AZE,Azerbaijan,144,Baku,04:00:00,2023
+1208,9074,Miami,2023-05-06T20:00:00+00:00,2023-05-06T21:00:00+00:00,Qualifying,Qualifying,19,USA,United States,151,Miami,-04:00:00,2023
+1210,9090,Monaco,2023-05-27T14:00:00+00:00,2023-05-27T15:00:00+00:00,Qualifying,Qualifying,114,MON,Monaco,22,Monte Carlo,02:00:00,2023
+1211,9098,Barcelona,2023-06-03T14:00:00+00:00,2023-06-03T15:00:00+00:00,Qualifying,Qualifying,1,ESP,Spain,15,Catalunya,02:00:00,2023
+1212,9106,Montréal,2023-06-17T20:00:00+00:00,2023-06-17T21:00:00+00:00,Qualifying,Qualifying,46,CAN,Canada,23,Montreal,-04:00:00,2023
+1213,9112,Spielberg,2023-06-30T15:00:00+00:00,2023-06-30T16:00:00+00:00,Qualifying,Qualifying,17,AUT,Austria,19,Spielberg,02:00:00,2023
+1214,9122,Silverstone,2023-07-08T14:00:00+00:00,2023-07-08T15:00:00+00:00,Qualifying,Qualifying,2,GBR,Great Britain,2,Silverstone,01:00:00,2023
+1215,9129,Budapest,2023-07-22T14:00:00+00:00,2023-07-22T15:00:00+00:00,Qualifying,Qualifying,14,HUN,Hungary,4,Hungaroring,02:00:00,2023
+1216,9135,Spa-Francorchamps,2023-07-28T15:00:00+00:00,2023-07-28T16:00:00+00:00,Qualifying,Qualifying,16,BEL,Belgium,7,Spa-Francorchamps,02:00:00,2023
+1217,9145,Zandvoort,2023-08-26T13:00:00+00:00,2023-08-26T14:00:00+00:00,Qualifying,Qualifying,133,NED,Netherlands,55,Zandvoort,02:00:00,2023
+1218,9153,Monza,2023-09-02T14:00:00+00:00,2023-09-02T15:00:00+00:00,Qualifying,Qualifying,13,ITA,Italy,39,Monza,02:00:00,2023
+1219,9161,Marina Bay,2023-09-16T13:00:00+00:00,2023-09-16T14:00:00+00:00,Qualifying,Qualifying,157,SGP,Singapore,61,Singapore,08:00:00,2023
+1220,9169,Suzuka,2023-09-23T06:00:00+00:00,2023-09-23T07:00:00+00:00,Qualifying,Qualifying,4,JPN,Japan,46,Suzuka,09:00:00,2023
+1221,9215,Lusail,2023-10-06T17:00:00+00:00,2023-10-06T18:00:00+00:00,Qualifying,Qualifying,149,QAT,Qatar,150,Lusail,03:00:00,2023
+1222,9207,Austin,2023-10-20T21:00:00+00:00,2023-10-20T22:00:00+00:00,Qualifying,Qualifying,19,USA,United States,9,Austin,-05:00:00,2023
+1223,9177,Mexico City,2023-10-28T21:00:00+00:00,2023-10-28T22:00:00+00:00,Qualifying,Qualifying,8,MEX,Mexico,65,Mexico City,-06:00:00,2023
+1224,9304,São Paulo,2023-11-03T18:00:00+00:00,2023-11-03T19:00:00+00:00,Qualifying,Qualifying,10,BRA,Brazil,14,Interlagos,-03:00:00,2023
+1225,9314,Las Vegas,2023-11-18T08:00:00+00:00,2023-11-18T09:00:00+00:00,Qualifying,Qualifying,19,USA,United States,152,Las Vegas,-08:00:00,2023
+1226,9193,Yas Island,2023-11-25T14:00:00+00:00,2023-11-25T15:00:00+00:00,Qualifying,Qualifying,21,UAE,United Arab Emirates,70,Yas Marina Circuit,04:00:00,2023
+1229,9468,Sakhir,2024-03-01T16:00:00+00:00,2024-03-01T17:00:00+00:00,Qualifying,Qualifying,36,BRN,Bahrain,63,Sakhir,03:00:00,2024
+1230,9476,Jeddah,2024-03-08T17:00:00+00:00,2024-03-08T18:00:00+00:00,Qualifying,Qualifying,153,KSA,Saudi Arabia,149,Jeddah,03:00:00,2024
+1231,9484,Melbourne,2024-03-23T05:00:00+00:00,2024-03-23T06:00:00+00:00,Qualifying,Qualifying,5,AUS,Australia,10,Melbourne,11:00:00,2024
+1232,9492,Suzuka,2024-04-06T06:00:00+00:00,2024-04-06T07:00:00+00:00,Qualifying,Qualifying,4,JPN,Japan,46,Suzuka,09:00:00,2024
+1233,9664,Shanghai,2024-04-20T07:00:00+00:00,2024-04-20T08:00:00+00:00,Qualifying,Qualifying,53,CHN,China,49,Shanghai,08:00:00,2024
+1234,9498,Miami,2024-05-04T20:00:00+00:00,2024-05-04T21:00:00+00:00,Qualifying,Qualifying,19,USA,United States,151,Miami,-04:00:00,2024
+1235,9511,Imola,2024-05-18T14:00:00+00:00,2024-05-18T15:00:00+00:00,Qualifying,Qualifying,13,ITA,Italy,6,Imola,02:00:00,2024
+1236,9519,Monaco,2024-05-25T14:00:00+00:00,2024-05-25T15:00:00+00:00,Qualifying,Qualifying,114,MON,Monaco,22,Monte Carlo,02:00:00,2024
+1237,9527,Montréal,2024-06-08T20:00:00+00:00,2024-06-08T21:00:00+00:00,Qualifying,Qualifying,46,CAN,Canada,23,Montreal,-04:00:00,2024
+1238,9535,Barcelona,2024-06-22T14:00:00+00:00,2024-06-22T15:00:00+00:00,Qualifying,Qualifying,1,ESP,Spain,15,Catalunya,02:00:00,2024
+1239,9541,Spielberg,2024-06-29T14:00:00+00:00,2024-06-29T15:00:00+00:00,Qualifying,Qualifying,17,AUT,Austria,19,Spielberg,02:00:00,2024
+1240,9554,Silverstone,2024-07-06T14:00:00+00:00,2024-07-06T15:00:00+00:00,Qualifying,Qualifying,2,GBR,Great Britain,2,Silverstone,01:00:00,2024
+1241,9562,Budapest,2024-07-20T14:00:00+00:00,2024-07-20T15:00:00+00:00,Qualifying,Qualifying,14,HUN,Hungary,4,Hungaroring,02:00:00,2024
+1242,9570,Spa-Francorchamps,2024-07-27T14:00:00+00:00,2024-07-27T15:00:00+00:00,Qualifying,Qualifying,16,BEL,Belgium,7,Spa-Francorchamps,02:00:00,2024
+1243,9578,Zandvoort,2024-08-24T13:00:00+00:00,2024-08-24T14:00:00+00:00,Qualifying,Qualifying,133,NED,Netherlands,55,Zandvoort,02:00:00,2024
+1244,9586,Monza,2024-08-31T14:00:00+00:00,2024-08-31T15:00:00+00:00,Qualifying,Qualifying,13,ITA,Italy,39,Monza,02:00:00,2024
+1245,9594,Baku,2024-09-14T12:00:00+00:00,2024-09-14T13:00:00+00:00,Qualifying,Qualifying,30,AZE,Azerbaijan,144,Baku,04:00:00,2024
+1246,9602,Marina Bay,2024-09-21T13:00:00+00:00,2024-09-21T14:00:00+00:00,Qualifying,Qualifying,157,SGP,Singapore,61,Singapore,08:00:00,2024
+1247,9608,Austin,2024-10-19T22:00:00+00:00,2024-10-19T23:00:00+00:00,Qualifying,Qualifying,19,USA,United States,9,Austin,-05:00:00,2024
+1248,9621,Mexico City,2024-10-26T21:00:00+00:00,2024-10-26T22:00:00+00:00,Qualifying,Qualifying,8,MEX,Mexico,65,Mexico City,-06:00:00,2024
+1249,9627,São Paulo,2024-11-02T18:00:00+00:00,2024-11-02T19:00:00+00:00,Qualifying,Qualifying,10,BRA,Brazil,14,Interlagos,-03:00:00,2024
+1250,9640,Las Vegas,2024-11-23T06:00:00+00:00,2024-11-23T07:00:00+00:00,Qualifying,Qualifying,19,USA,United States,152,Las Vegas,-08:00:00,2024
+1251,9646,Lusail,2024-11-30T18:00:00+00:00,2024-11-30T19:00:00+00:00,Qualifying,Qualifying,149,QAT,Qatar,150,Lusail,03:00:00,2024
+1252,9658,Yas Island,2024-12-07T14:00:00+00:00,2024-12-07T15:00:00+00:00,Qualifying,Qualifying,21,UAE,United Arab Emirates,70,Yas Marina Circuit,04:00:00,2024
+1254,9689,Melbourne,2025-03-15T05:00:00+00:00,2025-03-15T06:00:00+00:00,Qualifying,Qualifying,5,AUS,Australia,10,Melbourne,11:00:00,2025
+1255,9994,Shanghai,2025-03-22T07:00:00+00:00,2025-03-22T08:00:00+00:00,Qualifying,Qualifying,53,CHN,China,49,Shanghai,08:00:00,2025
+1256,10002,Suzuka,2025-04-05T06:00:00+00:00,2025-04-05T07:00:00+00:00,Qualifying,Qualifying,4,JPN,Japan,46,Suzuka,09:00:00,2025
+1257,10010,Sakhir,2025-04-12T16:00:00+00:00,2025-04-12T17:00:00+00:00,Qualifying,Qualifying,36,BRN,Bahrain,63,Sakhir,03:00:00,2025
+1258,10018,Jeddah,2025-04-19T17:00:00+00:00,2025-04-19T18:00:00+00:00,Qualifying,Qualifying,153,KSA,Saudi Arabia,149,Jeddah,03:00:00,2025
+1259,10029,Miami,2025-05-03T20:00:00+00:00,2025-05-03T21:00:00+00:00,Qualifying,Qualifying,19,USA,United States,151,Miami,-04:00:00,2025
+1260,9983,Imola,2025-05-17T14:00:00+00:00,2025-05-17T15:00:00+00:00,Qualifying,Qualifying,13,ITA,Italy,6,Imola,02:00:00,2025
+1261,9975,Monaco,2025-05-24T14:00:00+00:00,2025-05-24T15:00:00+00:00,Qualifying,Qualifying,114,MON,Monaco,22,Monte Carlo,02:00:00,2025
+1262,9967,Barcelona,2025-05-31T14:00:00+00:00,2025-05-31T15:00:00+00:00,Qualifying,Qualifying,1,ESP,Spain,15,Catalunya,02:00:00,2025
+1263,9959,Montréal,2025-06-14T20:00:00+00:00,2025-06-14T21:00:00+00:00,Qualifying,Qualifying,46,CAN,Canada,23,Montreal,-04:00:00,2025
+1264,9951,Spielberg,2025-06-28T14:00:00+00:00,2025-06-28T15:00:00+00:00,Qualifying,Qualifying,17,AUT,Austria,19,Spielberg,02:00:00,2025
+1277,9943,Silverstone,2025-07-05T14:00:00+00:00,2025-07-05T15:00:00+00:00,Qualifying,Qualifying,2,GBR,United Kingdom,2,Silverstone,01:00:00,2025
+1265,9935,Spa-Francorchamps,2025-07-26T14:00:00+00:00,2025-07-26T15:00:00+00:00,Qualifying,Qualifying,16,BEL,Belgium,7,Spa-Francorchamps,02:00:00,2025
+1266,9924,Budapest,2025-08-02T14:00:00+00:00,2025-08-02T15:00:00+00:00,Qualifying,Qualifying,14,HUN,Hungary,4,Hungaroring,02:00:00,2025
+1267,9916,Zandvoort,2025-08-30T13:00:00+00:00,2025-08-30T14:00:00+00:00,Qualifying,Qualifying,133,NED,Netherlands,55,Zandvoort,02:00:00,2025
+1268,9908,Monza,2025-09-06T14:00:00+00:00,2025-09-06T15:00:00+00:00,Qualifying,Qualifying,13,ITA,Italy,39,Monza,02:00:00,2025
+1269,9900,Baku,2025-09-20T12:00:00+00:00,2025-09-20T13:00:00+00:00,Qualifying,Qualifying,30,AZE,Azerbaijan,144,Baku,04:00:00,2025
+1270,9892,Marina Bay,2025-10-04T13:00:00+00:00,2025-10-04T14:00:00+00:00,Qualifying,Qualifying,157,SGP,Singapore,61,Singapore,08:00:00,2025
+1271,9884,Austin,2025-10-18T21:00:00+00:00,2025-10-18T22:00:00+00:00,Qualifying,Qualifying,19,USA,United States,9,Austin,-05:00:00,2025
+1272,9873,Mexico City,2025-10-25T21:00:00+00:00,2025-10-25T22:00:00+00:00,Qualifying,Qualifying,8,MEX,Mexico,65,Mexico City,-06:00:00,2025
+1273,9865,São Paulo,2025-11-08T18:00:00+00:00,2025-11-08T19:00:00+00:00,Qualifying,Qualifying,10,BRA,Brazil,14,Interlagos,-03:00:00,2025
+1274,9854,Las Vegas,2025-11-22T04:00:00+00:00,2025-11-22T05:00:00+00:00,Qualifying,Qualifying,19,USA,United States,152,Las Vegas,-08:00:00,2025
+1275,9846,Lusail,2025-11-29T18:00:00+00:00,2025-11-29T19:00:00+00:00,Qualifying,Qualifying,149,QAT,Qatar,150,Lusail,03:00:00,2025
+1276,9835,Yas Island,2025-12-06T14:00:00+00:00,2025-12-06T15:00:00+00:00,Qualifying,Qualifying,21,UAE,United Arab Emirates,70,Yas Marina Circuit,04:00:00,2025
