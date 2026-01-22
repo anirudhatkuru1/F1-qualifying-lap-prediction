@@ -1,0 +1,477 @@
+year,race,driver,real_time_seconds
+2025,Australian Grand Prix,ALB,75.737
+2025,Australian Grand Prix,ALO,76.288
+2025,Australian Grand Prix,ANT,76.525
+2025,Australian Grand Prix,BOR,76.516
+2025,Australian Grand Prix,DOO,76.315
+2025,Australian Grand Prix,GAS,75.98
+2025,Australian Grand Prix,HAD,76.175
+2025,Australian Grand Prix,HAM,75.919
+2025,Australian Grand Prix,HUL,76.579
+2025,Australian Grand Prix,LAW,77.094
+2025,Australian Grand Prix,LEC,75.755
+2025,Australian Grand Prix,NOR,75.096
+2025,Australian Grand Prix,OCO,77.147
+2025,Australian Grand Prix,PIA,75.18
+2025,Australian Grand Prix,RUS,75.546
+2025,Australian Grand Prix,SAI,75.931
+2025,Australian Grand Prix,STR,76.369
+2025,Australian Grand Prix,TSU,75.67
+2025,Australian Grand Prix,VER,75.481
+2025,Chinese Grand Prix,ALB,91.503
+2025,Chinese Grand Prix,ALO,91.688
+2025,Chinese Grand Prix,ANT,91.103
+2025,Chinese Grand Prix,BEA,92.018
+2025,Chinese Grand Prix,BOR,92.141
+2025,Chinese Grand Prix,DOO,92.092
+2025,Chinese Grand Prix,GAS,91.992
+2025,Chinese Grand Prix,HAD,91.079
+2025,Chinese Grand Prix,HAM,90.927
+2025,Chinese Grand Prix,HUL,91.632
+2025,Chinese Grand Prix,LAW,92.174
+2025,Chinese Grand Prix,LEC,91.021
+2025,Chinese Grand Prix,NOR,90.787
+2025,Chinese Grand Prix,OCO,91.625
+2025,Chinese Grand Prix,PIA,90.641
+2025,Chinese Grand Prix,RUS,90.723
+2025,Chinese Grand Prix,SAI,91.628
+2025,Chinese Grand Prix,STR,91.773
+2025,Chinese Grand Prix,TSU,91.238
+2025,Chinese Grand Prix,VER,90.817
+2025,Japanese Grand Prix,ALB,87.615
+2025,Japanese Grand Prix,ALO,87.897
+2025,Japanese Grand Prix,ANT,87.555
+2025,Japanese Grand Prix,BEA,87.711
+2025,Japanese Grand Prix,BOR,88.622
+2025,Japanese Grand Prix,DOO,88.877
+2025,Japanese Grand Prix,GAS,87.822
+2025,Japanese Grand Prix,HAD,87.569
+2025,Japanese Grand Prix,HAM,87.61
+2025,Japanese Grand Prix,HUL,88.57
+2025,Japanese Grand Prix,LAW,87.906
+2025,Japanese Grand Prix,LEC,87.299
+2025,Japanese Grand Prix,NOR,86.995
+2025,Japanese Grand Prix,OCO,88.696
+2025,Japanese Grand Prix,PIA,87.027
+2025,Japanese Grand Prix,RUS,87.318
+2025,Japanese Grand Prix,SAI,87.836
+2025,Japanese Grand Prix,STR,89.271
+2025,Japanese Grand Prix,TSU,87.967
+2025,Japanese Grand Prix,VER,86.983
+2025,Bahrain Grand Prix,ALB,92.04
+2025,Bahrain Grand Prix,ALO,91.634
+2025,Bahrain Grand Prix,ANT,90.213
+2025,Bahrain Grand Prix,BEA,92.373
+2025,Bahrain Grand Prix,BOR,92.186
+2025,Bahrain Grand Prix,DOO,91.245
+2025,Bahrain Grand Prix,GAS,90.216
+2025,Bahrain Grand Prix,HAD,91.271
+2025,Bahrain Grand Prix,HAM,90.772
+2025,Bahrain Grand Prix,HUL,91.693
+2025,Bahrain Grand Prix,LAW,92.165
+2025,Bahrain Grand Prix,LEC,90.175
+2025,Bahrain Grand Prix,NOR,90.267
+2025,Bahrain Grand Prix,OCO,91.594
+2025,Bahrain Grand Prix,PIA,89.841
+2025,Bahrain Grand Prix,RUS,90.009
+2025,Bahrain Grand Prix,SAI,90.68
+2025,Bahrain Grand Prix,STR,92.283
+2025,Bahrain Grand Prix,TSU,91.228
+2025,Bahrain Grand Prix,VER,90.423
+2025,Saudi Arabian Grand Prix,ALB,88.109
+2025,Saudi Arabian Grand Prix,ALO,88.303
+2025,Saudi Arabian Grand Prix,ANT,87.798
+2025,Saudi Arabian Grand Prix,BEA,88.536
+2025,Saudi Arabian Grand Prix,BOR,89.462
+2025,Saudi Arabian Grand Prix,DOO,88.739
+2025,Saudi Arabian Grand Prix,GAS,88.025
+2025,Saudi Arabian Grand Prix,HAD,88.418
+2025,Saudi Arabian Grand Prix,HAM,88.102
+2025,Saudi Arabian Grand Prix,HUL,88.782
+2025,Saudi Arabian Grand Prix,LAW,88.191
+2025,Saudi Arabian Grand Prix,LEC,87.67
+2025,Saudi Arabian Grand Prix,NOR,87.481
+2025,Saudi Arabian Grand Prix,OCO,89.092
+2025,Saudi Arabian Grand Prix,PIA,87.304
+2025,Saudi Arabian Grand Prix,RUS,87.407
+2025,Saudi Arabian Grand Prix,SAI,88.024
+2025,Saudi Arabian Grand Prix,STR,88.645
+2025,Saudi Arabian Grand Prix,TSU,87.99
+2025,Saudi Arabian Grand Prix,VER,87.294
+2025,Miami Grand Prix,ALB,86.682
+2025,Miami Grand Prix,ALO,87.604
+2025,Miami Grand Prix,ANT,86.271
+2025,Miami Grand Prix,BEA,87.999
+2025,Miami Grand Prix,BOR,87.151
+2025,Miami Grand Prix,DOO,87.186
+2025,Miami Grand Prix,GAS,87.71
+2025,Miami Grand Prix,HAD,86.987
+2025,Miami Grand Prix,HAM,87.006
+2025,Miami Grand Prix,HUL,87.473
+2025,Miami Grand Prix,LAW,87.363
+2025,Miami Grand Prix,LEC,86.754
+2025,Miami Grand Prix,NOR,86.269
+2025,Miami Grand Prix,OCO,86.824
+2025,Miami Grand Prix,PIA,86.269
+2025,Miami Grand Prix,RUS,86.385
+2025,Miami Grand Prix,SAI,86.569
+2025,Miami Grand Prix,STR,87.83
+2025,Miami Grand Prix,TSU,86.943
+2025,Miami Grand Prix,VER,86.204
+2025,Emilia Romagna Grand Prix,ALB,75.473
+2025,Emilia Romagna Grand Prix,ALO,75.431
+2025,Emilia Romagna Grand Prix,ANT,75.772
+2025,Emilia Romagna Grand Prix,BEA,76.077
+2025,Emilia Romagna Grand Prix,BOR,76.26
+2025,Emilia Romagna Grand Prix,COL,76.256
+2025,Emilia Romagna Grand Prix,GAS,75.505
+2025,Emilia Romagna Grand Prix,HAD,75.51
+2025,Emilia Romagna Grand Prix,HAM,75.765
+2025,Emilia Romagna Grand Prix,HUL,76.518
+2025,Emilia Romagna Grand Prix,LAW,76.379
+2025,Emilia Romagna Grand Prix,LEC,75.604
+2025,Emilia Romagna Grand Prix,NOR,74.962
+2025,Emilia Romagna Grand Prix,OCO,76.613
+2025,Emilia Romagna Grand Prix,PIA,74.67
+2025,Emilia Romagna Grand Prix,RUS,74.807
+2025,Emilia Romagna Grand Prix,SAI,75.198
+2025,Emilia Romagna Grand Prix,STR,75.497
+2025,Emilia Romagna Grand Prix,VER,74.704
+2025,Monaco Grand Prix,ALB,70.732
+2025,Monaco Grand Prix,ALO,70.924
+2025,Monaco Grand Prix,ANT,71.88
+2025,Monaco Grand Prix,BEA,71.979
+2025,Monaco Grand Prix,BOR,71.902
+2025,Monaco Grand Prix,COL,72.597
+2025,Monaco Grand Prix,GAS,71.994
+2025,Monaco Grand Prix,HAD,70.923
+2025,Monaco Grand Prix,HAM,70.382
+2025,Monaco Grand Prix,HUL,71.596
+2025,Monaco Grand Prix,LAW,71.129
+2025,Monaco Grand Prix,LEC,70.063
+2025,Monaco Grand Prix,NOR,69.954
+2025,Monaco Grand Prix,OCO,70.942
+2025,Monaco Grand Prix,PIA,70.129
+2025,Monaco Grand Prix,RUS,71.507
+2025,Monaco Grand Prix,SAI,71.362
+2025,Monaco Grand Prix,STR,72.563
+2025,Monaco Grand Prix,TSU,71.415
+2025,Monaco Grand Prix,VER,70.669
+2025,Spanish Grand Prix,ALB,72.641
+2025,Spanish Grand Prix,ALO,72.284
+2025,Spanish Grand Prix,ANT,72.111
+2025,Spanish Grand Prix,BEA,73.074
+2025,Spanish Grand Prix,BOR,72.756
+2025,Spanish Grand Prix,COL,73.334
+2025,Spanish Grand Prix,GAS,72.199
+2025,Spanish Grand Prix,HAD,72.252
+2025,Spanish Grand Prix,HAM,72.045
+2025,Spanish Grand Prix,HUL,73.19
+2025,Spanish Grand Prix,LAW,72.763
+2025,Spanish Grand Prix,LEC,72.131
+2025,Spanish Grand Prix,NOR,71.755
+2025,Spanish Grand Prix,OCO,73.201
+2025,Spanish Grand Prix,PIA,71.546
+2025,Spanish Grand Prix,RUS,71.848
+2025,Spanish Grand Prix,SAI,73.203
+2025,Spanish Grand Prix,STR,73.038
+2025,Spanish Grand Prix,TSU,73.385
+2025,Spanish Grand Prix,VER,71.848
+2025,Canadian Grand Prix,ALB,71.892
+2025,Canadian Grand Prix,ALO,71.586
+2025,Canadian Grand Prix,ANT,71.391
+2025,Canadian Grand Prix,BEA,72.306
+2025,Canadian Grand Prix,BOR,72.385
+2025,Canadian Grand Prix,COL,72.142
+2025,Canadian Grand Prix,GAS,72.667
+2025,Canadian Grand Prix,HAD,71.867
+2025,Canadian Grand Prix,HAM,71.526
+2025,Canadian Grand Prix,HUL,72.183
+2025,Canadian Grand Prix,LAW,72.525
+2025,Canadian Grand Prix,LEC,71.626
+2025,Canadian Grand Prix,NOR,71.599
+2025,Canadian Grand Prix,OCO,72.378
+2025,Canadian Grand Prix,PIA,71.12
+2025,Canadian Grand Prix,RUS,70.899
+2025,Canadian Grand Prix,SAI,72.398
+2025,Canadian Grand Prix,STR,72.517
+2025,Canadian Grand Prix,TSU,72.102
+2025,Canadian Grand Prix,VER,71.059
+2025,Austrian Grand Prix,ALB,65.143
+2025,Austrian Grand Prix,ALO,65.128
+2025,Austrian Grand Prix,ANT,65.052
+2025,Austrian Grand Prix,BEA,65.218
+2025,Austrian Grand Prix,BOR,64.846
+2025,Austrian Grand Prix,COL,65.278
+2025,Austrian Grand Prix,GAS,64.846
+2025,Austrian Grand Prix,HAD,65.063
+2025,Austrian Grand Prix,HAM,64.582
+2025,Austrian Grand Prix,HUL,65.606
+2025,Austrian Grand Prix,LAW,64.926
+2025,Austrian Grand Prix,LEC,64.492
+2025,Austrian Grand Prix,NOR,63.971
+2025,Austrian Grand Prix,OCO,65.364
+2025,Austrian Grand Prix,PIA,64.554
+2025,Austrian Grand Prix,RUS,64.763
+2025,Austrian Grand Prix,SAI,65.582
+2025,Austrian Grand Prix,STR,65.329
+2025,Austrian Grand Prix,TSU,65.369
+2025,Austrian Grand Prix,VER,64.836
+2025,British Grand Prix,ALB,85.889
+2025,British Grand Prix,ALO,85.593
+2025,British Grand Prix,ANT,85.374
+2025,British Grand Prix,BEA,85.471
+2025,British Grand Prix,BOR,86.446
+2025,British Grand Prix,COL,87.06
+2025,British Grand Prix,GAS,85.711
+2025,British Grand Prix,HAD,85.864
+2025,British Grand Prix,HAM,85.084
+2025,British Grand Prix,HUL,86.574
+2025,British Grand Prix,LAW,86.44
+2025,British Grand Prix,LEC,85.121
+2025,British Grand Prix,NOR,85.01
+2025,British Grand Prix,OCO,85.95
+2025,British Grand Prix,PIA,84.995
+2025,British Grand Prix,RUS,85.029
+2025,British Grand Prix,SAI,85.746
+2025,British Grand Prix,STR,86.504
+2025,British Grand Prix,TSU,85.826
+2025,British Grand Prix,VER,84.892
+2025,Belgian Grand Prix,ALB,101.201
+2025,Belgian Grand Prix,ALO,102.385
+2025,Belgian Grand Prix,ANT,102.139
+2025,Belgian Grand Prix,BEA,101.617
+2025,Belgian Grand Prix,BOR,101.336
+2025,Belgian Grand Prix,COL,102.022
+2025,Belgian Grand Prix,GAS,101.633
+2025,Belgian Grand Prix,HAD,101.281
+2025,Belgian Grand Prix,HAM,101.664
+2025,Belgian Grand Prix,HUL,101.707
+2025,Belgian Grand Prix,LAW,101.297
+2025,Belgian Grand Prix,LEC,100.9
+2025,Belgian Grand Prix,NOR,100.562
+2025,Belgian Grand Prix,OCO,101.525
+2025,Belgian Grand Prix,PIA,100.626
+2025,Belgian Grand Prix,RUS,101.254
+2025,Belgian Grand Prix,SAI,101.691
+2025,Belgian Grand Prix,STR,102.502
+2025,Belgian Grand Prix,TSU,101.245
+2025,Belgian Grand Prix,VER,100.903
+2025,Hungarian Grand Prix,ALB,76.223
+2025,Hungarian Grand Prix,ALO,75.281
+2025,Hungarian Grand Prix,ANT,75.693
+2025,Hungarian Grand Prix,BEA,75.694
+2025,Hungarian Grand Prix,BOR,75.586
+2025,Hungarian Grand Prix,COL,75.875
+2025,Hungarian Grand Prix,GAS,75.966
+2025,Hungarian Grand Prix,HAD,75.469
+2025,Hungarian Grand Prix,HAM,75.702
+2025,Hungarian Grand Prix,HUL,76.081
+2025,Hungarian Grand Prix,LAW,75.63
+2025,Hungarian Grand Prix,LEC,75.372
+2025,Hungarian Grand Prix,NOR,74.89
+2025,Hungarian Grand Prix,OCO,76.023
+2025,Hungarian Grand Prix,PIA,74.941
+2025,Hungarian Grand Prix,RUS,75.201
+2025,Hungarian Grand Prix,SAI,75.652
+2025,Hungarian Grand Prix,STR,75.129
+2025,Hungarian Grand Prix,TSU,75.899
+2025,Hungarian Grand Prix,VER,75.547
+2025,Dutch Grand Prix,ALB,69.652
+2025,Dutch Grand Prix,ALO,69.366
+2025,Dutch Grand Prix,ANT,69.493
+2025,Dutch Grand Prix,BEA,70.262
+2025,Dutch Grand Prix,BOR,69.622
+2025,Dutch Grand Prix,COL,70.104
+2025,Dutch Grand Prix,GAS,69.637
+2025,Dutch Grand Prix,HAD,69.208
+2025,Dutch Grand Prix,HAM,69.261
+2025,Dutch Grand Prix,HUL,70.195
+2025,Dutch Grand Prix,LAW,69.383
+2025,Dutch Grand Prix,LEC,69.304
+2025,Dutch Grand Prix,NOR,68.674
+2025,Dutch Grand Prix,OCO,70.197
+2025,Dutch Grand Prix,PIA,68.662
+2025,Dutch Grand Prix,RUS,69.255
+2025,Dutch Grand Prix,SAI,69.472
+2025,Dutch Grand Prix,STR,92.046
+2025,Dutch Grand Prix,TSU,69.622
+2025,Dutch Grand Prix,VER,68.925
+2025,Italian Grand Prix,ALB,79.583
+2025,Italian Grand Prix,ALO,79.362
+2025,Italian Grand Prix,ANT,79.2
+2025,Italian Grand Prix,BEA,79.446
+2025,Italian Grand Prix,BOR,79.323
+2025,Italian Grand Prix,COL,79.992
+2025,Italian Grand Prix,GAS,80.103
+2025,Italian Grand Prix,HAD,79.917
+2025,Italian Grand Prix,HAM,79.124
+2025,Italian Grand Prix,HUL,79.498
+2025,Italian Grand Prix,LAW,80.279
+2025,Italian Grand Prix,LEC,79.007
+2025,Italian Grand Prix,NOR,78.869
+2025,Italian Grand Prix,OCO,79.707
+2025,Italian Grand Prix,PIA,78.982
+2025,Italian Grand Prix,RUS,79.157
+2025,Italian Grand Prix,SAI,79.528
+2025,Italian Grand Prix,STR,79.948
+2025,Italian Grand Prix,TSU,79.433
+2025,Italian Grand Prix,VER,78.792
+2025,Azerbaijan Grand Prix,ALB,103.778
+2025,Azerbaijan Grand Prix,ALO,101.857
+2025,Azerbaijan Grand Prix,ANT,101.464
+2025,Azerbaijan Grand Prix,BEA,102.666
+2025,Azerbaijan Grand Prix,BOR,102.277
+2025,Azerbaijan Grand Prix,COL,102.779
+2025,Azerbaijan Grand Prix,GAS,103.139
+2025,Azerbaijan Grand Prix,HAD,101.647
+2025,Azerbaijan Grand Prix,HAM,101.821
+2025,Azerbaijan Grand Prix,HUL,102.916
+2025,Azerbaijan Grand Prix,LAW,101.537
+2025,Azerbaijan Grand Prix,LEC,101.458
+2025,Azerbaijan Grand Prix,NOR,101.322
+2025,Azerbaijan Grand Prix,OCO,103.004
+2025,Azerbaijan Grand Prix,PIA,101.414
+2025,Azerbaijan Grand Prix,RUS,101.455
+2025,Azerbaijan Grand Prix,SAI,101.595
+2025,Azerbaijan Grand Prix,STR,102.101
+2025,Azerbaijan Grand Prix,TSU,101.788
+2025,Azerbaijan Grand Prix,VER,101.117
+2025,Singapore Grand Prix,ALB,90.202
+2025,Singapore Grand Prix,ALO,89.955
+2025,Singapore Grand Prix,ANT,89.537
+2025,Singapore Grand Prix,BEA,89.868
+2025,Singapore Grand Prix,BOR,90.82
+2025,Singapore Grand Prix,COL,90.982
+2025,Singapore Grand Prix,GAS,91.261
+2025,Singapore Grand Prix,HAD,89.846
+2025,Singapore Grand Prix,HAM,89.688
+2025,Singapore Grand Prix,HUL,90.141
+2025,Singapore Grand Prix,LAW,90.32
+2025,Singapore Grand Prix,LEC,89.784
+2025,Singapore Grand Prix,NOR,89.586
+2025,Singapore Grand Prix,OCO,90.989
+2025,Singapore Grand Prix,PIA,89.524
+2025,Singapore Grand Prix,RUS,89.158
+2025,Singapore Grand Prix,SAI,90.235
+2025,Singapore Grand Prix,STR,90.949
+2025,Singapore Grand Prix,TSU,90.353
+2025,Singapore Grand Prix,VER,89.34
+2025,United States Grand Prix,ALB,93.67
+2025,United States Grand Prix,ALO,93.16
+2025,United States Grand Prix,ANT,93.044
+2025,United States Grand Prix,BEA,93.139
+2025,United States Grand Prix,BOR,94.125
+2025,United States Grand Prix,COL,94.039
+2025,United States Grand Prix,GAS,93.599
+2025,United States Grand Prix,HAM,92.912
+2025,United States Grand Prix,HUL,93.334
+2025,United States Grand Prix,LAW,93.36
+2025,United States Grand Prix,LEC,92.807
+2025,United States Grand Prix,NOR,92.801
+2025,United States Grand Prix,OCO,94.136
+2025,United States Grand Prix,PIA,93.084
+2025,United States Grand Prix,RUS,92.826
+2025,United States Grand Prix,SAI,93.124
+2025,United States Grand Prix,STR,93.878
+2025,United States Grand Prix,TSU,93.466
+2025,United States Grand Prix,VER,92.51
+2025,Mexico City Grand Prix,ALB,77.49
+2025,Mexico City Grand Prix,ALO,77.103
+2025,Mexico City Grand Prix,ANT,76.118
+2025,Mexico City Grand Prix,BEA,76.46
+2025,Mexico City Grand Prix,BOR,77.412
+2025,Mexico City Grand Prix,COL,77.67
+2025,Mexico City Grand Prix,GAS,77.546
+2025,Mexico City Grand Prix,HAD,76.252
+2025,Mexico City Grand Prix,HAM,75.938
+2025,Mexico City Grand Prix,HUL,77.016
+2025,Mexico City Grand Prix,LAW,76.961
+2025,Mexico City Grand Prix,LEC,75.848
+2025,Mexico City Grand Prix,NOR,75.586
+2025,Mexico City Grand Prix,OCO,76.837
+2025,Mexico City Grand Prix,PIA,76.174
+2025,Mexico City Grand Prix,RUS,76.034
+2025,Mexico City Grand Prix,SAI,76.172
+2025,Mexico City Grand Prix,STR,77.606
+2025,Mexico City Grand Prix,TSU,76.816
+2025,Mexico City Grand Prix,VER,76.07
+2025,São Paulo Grand Prix,ALB,70.053
+2025,São Paulo Grand Prix,ALO,70.001
+2025,São Paulo Grand Prix,ANT,69.685
+2025,São Paulo Grand Prix,BEA,69.755
+2025,São Paulo Grand Prix,COL,70.632
+2025,São Paulo Grand Prix,GAS,69.857
+2025,São Paulo Grand Prix,HAD,69.931
+2025,São Paulo Grand Prix,HAM,70.016
+2025,São Paulo Grand Prix,HUL,69.985
+2025,São Paulo Grand Prix,LAW,69.95
+2025,São Paulo Grand Prix,LEC,69.801
+2025,São Paulo Grand Prix,NOR,69.511
+2025,São Paulo Grand Prix,OCO,70.438
+2025,São Paulo Grand Prix,PIA,69.835
+2025,São Paulo Grand Prix,RUS,69.88
+2025,São Paulo Grand Prix,SAI,70.184
+2025,São Paulo Grand Prix,STR,70.041
+2025,São Paulo Grand Prix,TSU,70.711
+2025,São Paulo Grand Prix,VER,70.403
+2025,Las Vegas Grand Prix,ALB,116.22
+2025,Las Vegas Grand Prix,ALO,109.466
+2025,Las Vegas Grand Prix,ANT,116.314
+2025,Las Vegas Grand Prix,BEA,113.094
+2025,Las Vegas Grand Prix,BOR,116.674
+2025,Las Vegas Grand Prix,COL,113.683
+2025,Las Vegas Grand Prix,GAS,111.54
+2025,Las Vegas Grand Prix,HAD,109.554
+2025,Las Vegas Grand Prix,HAM,117.115
+2025,Las Vegas Grand Prix,HUL,112.781
+2025,Las Vegas Grand Prix,LAW,109.062
+2025,Las Vegas Grand Prix,LEC,109.872
+2025,Las Vegas Grand Prix,NOR,107.934
+2025,Las Vegas Grand Prix,OCO,112.987
+2025,Las Vegas Grand Prix,PIA,108.961
+2025,Las Vegas Grand Prix,RUS,108.803
+2025,Las Vegas Grand Prix,SAI,108.296
+2025,Las Vegas Grand Prix,STR,112.85
+2025,Las Vegas Grand Prix,TSU,116.798
+2025,Las Vegas Grand Prix,VER,108.257
+2025,Qatar Grand Prix,ALB,80.629
+2025,Qatar Grand Prix,ALO,80.219
+2025,Qatar Grand Prix,ANT,79.846
+2025,Qatar Grand Prix,BEA,80.438
+2025,Qatar Grand Prix,BOR,80.534
+2025,Qatar Grand Prix,COL,81.137
+2025,Qatar Grand Prix,GAS,80.324
+2025,Qatar Grand Prix,HAD,80.114
+2025,Qatar Grand Prix,HAM,80.907
+2025,Qatar Grand Prix,HUL,80.353
+2025,Qatar Grand Prix,LAW,80.433
+2025,Qatar Grand Prix,LEC,80.343
+2025,Qatar Grand Prix,NOR,79.495
+2025,Qatar Grand Prix,OCO,80.864
+2025,Qatar Grand Prix,PIA,79.387
+2025,Qatar Grand Prix,RUS,79.662
+2025,Qatar Grand Prix,SAI,80.251
+2025,Qatar Grand Prix,STR,81.058
+2025,Qatar Grand Prix,TSU,80.761
+2025,Qatar Grand Prix,VER,79.651
+2025,Abu Dhabi Grand Prix,ALB,83.416
+2025,Abu Dhabi Grand Prix,ALO,82.861
+2025,Abu Dhabi Grand Prix,ANT,82.894
+2025,Abu Dhabi Grand Prix,BEA,83.041
+2025,Abu Dhabi Grand Prix,BOR,82.874
+2025,Abu Dhabi Grand Prix,COL,83.89
+2025,Abu Dhabi Grand Prix,GAS,83.468
+2025,Abu Dhabi Grand Prix,HAD,82.997
+2025,Abu Dhabi Grand Prix,HAM,83.394
+2025,Abu Dhabi Grand Prix,HUL,83.45
+2025,Abu Dhabi Grand Prix,LAW,83.077
+2025,Abu Dhabi Grand Prix,LEC,82.73
+2025,Abu Dhabi Grand Prix,NOR,82.408
+2025,Abu Dhabi Grand Prix,OCO,82.913
+2025,Abu Dhabi Grand Prix,PIA,82.437
+2025,Abu Dhabi Grand Prix,RUS,82.645
+2025,Abu Dhabi Grand Prix,SAI,83.042
+2025,Abu Dhabi Grand Prix,STR,83.097
+2025,Abu Dhabi Grand Prix,TSU,83.034
+2025,Abu Dhabi Grand Prix,VER,82.207

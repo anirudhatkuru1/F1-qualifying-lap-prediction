@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>F1 Qualifying Predictor</title>
+</head>
+<body>
+  <h1>F1 Qualifying Lap Prediction</h1>
+
+  <label>Driver:</label>
+  <select id="driver">
+    <option>Lando Norris</option>
+    <option>Max Verstappen</option>
+    <option>Oscar Piastri</option>
+    <option>George Russell</option>
+    <option>Charles Leclerc</option>
+    <option>Lewis Hamilton</option>
+    <option>Andrea Kimi Antonelli</option>
+    <option>Alexander Albon</option>
+    <option>Carlos Sainz</option>
+    <option>Fernando Alonso</option>
+    <option>Nico Hulkenberg</option>
+    <option>Isack Hadjar</option>
+    <option>Oliver Bearman</option>
+    <option>Liam Lawson</option>
+    <option>Esteban Ocon</option>
+    <option>Lance Stroll</option>
+    <option>Yuki Tsunoda</option>
+    <option>Pierre Gasly</option>
+    <option>Gabriel Bortoleto</option>
+    <option>Franco Colapinto</option>
+    <option>Jack Doohan</option>
+  </select>
+  <br><br>
+
+  <label>Team:</label>
+  <input id="team" value="Red Bull Racing"><br><br>
+
+  <label>Event:</label>
+  <select id="event">
+    <option>Australian Grand Prix</option>
+    <option>Bahrain Grand Prix</option>
+    <option>Saudi Arabian Grand Prix</option>
+    <option>Japanese Grand Prix</option>
+  </select>
+  <br><br>
+
+  <label>Quali Segment:</label>
+  <select id="segment">
+    <option>Q1</option>
+    <option>Q2</option>
+    <option selected>Q3</option>
+  </select><br><br>
+
+  <button onclick="predict()">Predict</button>
+
+  <h2 id="result"></h2>
+  <h3 id="real-time"></h3>
+
+<script>
+async function predict() {
+  const response = await fetch("http://127.0.0.1:8000/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      driver: document.getElementById("driver").value,
+      team: document.getElementById("team").value,
+      event: document.getElementById("event").value,
+      quali_segment: document.getElementById("segment").value
+    })
+  });
+
+  const data = await response.json();
+
+  if (data.error) {
+    document.getElementById("result").innerText = "Error: " + data.error;
+    document.getElementById("real-time").innerText = "";
+    return;
+  }
+
+document.getElementById("result").innerText =
+  `Predicted lap time: ${data.predicted_lap_time_sec} sec`;
+
+if (data.real_lap_time_sec !== null) {
+  const sign = data.delta_sec > 0 ? "+" : "";
+  document.getElementById("real-time").innerText =
+    `Actual lap time: ${data.real_lap_time_sec} sec
+Difference: ${sign}${data.delta_sec} sec`;
+} else {
+  document.getElementById("real-time").innerText =
+    "Actual lap time: Not available (race not completed)";
+} 
+}
+</script>
+
+</body>
+</html>

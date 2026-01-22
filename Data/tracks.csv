@@ -1,0 +1,26 @@
+Event,CircuitName,Country,TrackLength_m,NumCorners,CornerDensity,AvgCornerSpacing_m,TrackType,Altitude_m,DRSZones,LapSpeedClass
+Australian Grand Prix,Albert Park,Australia,5070,16,0.003155818540433925,316.875,Street,31,2,Medium
+Bahrain Grand Prix,Bahrain International,Bahrain,5412,15,0.002771618625277162,360.8,Permanent,35,2,Medium
+Chinese Grand Prix,Shanghai International,China,5450,16,0.0029357798165137615,340.625,Permanent,5,3,Fast
+Azerbaijan Grand Prix,Baku City,Azerbaijan,6003,20,0.0033316674995835416,300.15,Street,28,2,Fast
+Spanish Grand Prix,Barcelona-Catalunya,Spain,4655,16,0.0034371643394199786,290.9375,Permanent,110,1,Medium
+Monaco Grand Prix,Monaco,Monaco,3337,19,0.005693736889421637,175.6315789473684,Street,10,1,Slow
+Canadian Grand Prix,Gilles Villeneuve,Canada,4337,14,0.0032280378141572516,309.7857142857143,Permanent,22,2,Medium
+French Grand Prix,Paul Ricard,France,5831,15,0.0025724575544503517,388.73333333333335,Permanent,40,3,Fast
+Austrian Grand Prix,Red Bull Ring,Austria,4328,10,0.0023105360443622922,432.8,Permanent,700,2,Fast
+British Grand Prix,Silverstone,UK,5891,18,0.0030555084026481073,327.27777777777777,Permanent,140,2,Fast
+German Grand Prix,Hockenheimring,Germany,4423,13,0.0029391815509834953,340.2307692307692,Permanent,100,2,Medium
+Hungarian Grand Prix,Hungaroring,Hungary,4382,14,0.003194888178913738,313.0,Permanent,150,1,Slow
+Belgian Grand Prix,Spa-Francorchamps,Belgium,7004,19,0.002712735579668761,368.63157894736844,Permanent,300,2,Fast
+Italian Grand Prix,Monza,Italy,5793,11,0.0018988434317279475,526.6363636363636,Permanent,120,2,Fast
+Singapore Grand Prix,Marina Bay,Singapore,5063,23,0.0045427612087695045,220.1304347826087,Street,10,1,Slow
+Russian Grand Prix,Sochi Autodrom,Russia,5851,18,0.0030763971970603314,325.05555555555554,Permanent,5,2,Medium
+Japanese Grand Prix,Suzuka,Japan,5807,18,0.0030997072498708455,322.6111111111111,Permanent,50,2,Fast
+Mexico City Grand Prix,Hermanos Rodriguez,Mexico,4309,17,0.003945230912044558,253.47058823529412,Permanent,2240,2,Medium
+United States Grand Prix,COTA,USA,5513,20,0.0036277888626881916,275.65,Permanent,230,3,Fast
+São Paulo Grand Prix,Interlagos,Brazil,4309,15,0.0034810860988628454,287.26666666666665,Permanent,800,2,Medium
+Abu Dhabi Grand Prix,Yas Marina,UAE,5553,21,0.0037817396002160996,264.42857142857144,Permanent,10,2,Medium
+Miami Grand Prix,Miami,USA,5412,19,0.003510716925351072,284.8421052631579,Street,3,3,Medium
+Las Vegas Grand Prix,Las Vegas,USA,6353,14,0.002203683299228711,453.7857142857143,Street,600,2,Fast
+Qatar Grand Prix,Losail,Qatar,5380,16,0.002973977695167286,336.25,Permanent,20,2,Medium
+Saudi Arabian Grand Prix,Jeddah,Saudi Arabia,6174,27,0.004373177842565598,228.66666666666666,Street,15,3,Fast
