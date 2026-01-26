@@ -46,10 +46,10 @@ def root():
     return {"message": "F1 Qualifying Prediction API is running 🚀"}
 
 # ----------------------------
-# Load artifacts ONCE
+# Load model + data ONCE
 # ----------------------------
 model = CatBoostRegressor()
-model.load_model("quali_model.cbm")
+model.load_model("quali_q3_delta_model.cbm")
 
 medians = pd.read_csv("circuit_medians.csv")
 real_2025 = pd.read_csv("real_lap_time_2025.csv")
@@ -61,7 +61,7 @@ class QualiRequest(BaseModel):
     driver: str
     team: str
     event: str
-    quali_segment: str
+    quali_segment: str = "Q3"
     compound: str = "SOFT"
     session: str = "Q"
 
@@ -71,18 +71,19 @@ class QualiRequest(BaseModel):
 @app.post("/predict")
 def predict_quali(req: QualiRequest):
 
-    # Driver mapping
     driver_code = DRIVER_NAME_TO_CODE.get(req.driver)
-    if driver_code is None:
+    if not driver_code:
         return {"error": "Unknown driver"}
 
-    # Circuit medians
     row = medians[medians["Event"] == req.event]
     if row.empty:
         return {"error": "Event not found"}
+
     row = row.iloc[0]
 
-    # Model input
+    # ----------------------------
+    # Build model input
+    # ----------------------------
     input_data = {
         "Driver": driver_code,
         "Team": req.team,
@@ -95,6 +96,9 @@ def predict_quali(req: QualiRequest):
         "Country": row["Country"],
         "TrackType": row["TrackType"],
         "LapSpeedClass": row["LapSpeedClass"],
+
+        "Driver_Track": f"{driver_code}_{row['CircuitName']}",
+        "Team_Track": f"{req.team}_{row['CircuitName']}",
 
         "TyreLife": 2,
         "SpeedI1": row["SpeedI1"],
@@ -113,10 +117,17 @@ def predict_quali(req: QualiRequest):
     }
 
     X = pd.DataFrame([input_data])
-    predicted = float(model.predict(X)[0])
 
     # ----------------------------
-    # 2025 real time lookup
+    # Predict DELTA
+    # ----------------------------
+    predicted_delta = float(model.predict(X)[0])
+
+    session_median = row["SessionMedianLap"]
+    predicted_lap_time = session_median + predicted_delta
+
+    # ----------------------------
+    # 2025 real lap lookup
     # ----------------------------
     real_row = real_2025[
         (real_2025["driver"] == driver_code) &
@@ -129,13 +140,16 @@ def predict_quali(req: QualiRequest):
         else None
     )
 
-    # Delta
-    delta = round(predicted - real_time, 3) if real_time is not None else None
+    delta = (
+        round(predicted_lap_time - real_time, 3)
+        if real_time is not None
+        else None
+    )
 
     return {
         "driver": driver_code,
         "event": req.event,
-        "predicted_lap_time_sec": round(predicted, 3),
+        "predicted_lap_time_sec": round(predicted_lap_time, 3),
         "real_lap_time_sec": round(real_time, 3) if real_time else None,
         "delta_sec": delta
     }
