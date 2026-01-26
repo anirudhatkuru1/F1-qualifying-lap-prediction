@@ -65,6 +65,16 @@ class QualiRequest(BaseModel):
     compound: str = "SOFT"
     session: str = "Q"
 
+EXPECTED_FEATURES = [
+    "Driver", "Team", "Compound", "Event", "Session", "QualiSegment",
+    "CircuitName", "Country", "TrackType", "LapSpeedClass",
+    "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
+    "TrackLength_m", "NumCorners", "CornerDensity",
+    "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
+    "WindSpeed", "Altitude_m", "DRSZones"
+]
+
+
 # ----------------------------
 # Prediction endpoint
 # ----------------------------
@@ -116,7 +126,7 @@ def predict_quali(req: QualiRequest):
         "DRSZones": row["DRSZones"],
     }
 
-    X = pd.DataFrame([input_data])
+    X = pd.DataFrame([input_data], columns=EXPECTED_FEATURES)
 
     # ----------------------------
     # Predict DELTA
