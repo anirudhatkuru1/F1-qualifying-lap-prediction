@@ -46,13 +46,16 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"status": "F1 Qualifying API running"}
+    return {"status": "API running"}
 
 # ----------------------------
-# Load artifacts
+# Load model
 # ----------------------------
 model = CatBoostRegressor()
 model.load_model("quali_q3_delta_model.cbm")
+
+FEATURE_NAMES = model.feature_names_
+CAT_FEATURE_IDX = set(model.get_cat_feature_indices())
 
 medians = pd.read_csv("circuit_medians.csv")
 real_2025 = pd.read_csv("real_lap_time_2025.csv")
@@ -69,25 +72,7 @@ class QualiRequest(BaseModel):
     session: str = "Q"
 
 # ----------------------------
-# Feature config
-# ----------------------------
-EXPECTED_FEATURES = [
-    "Driver", "Team", "Compound", "Event", "Session", "QualiSegment",
-    "CircuitName", "Country", "TrackType", "LapSpeedClass",
-    "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
-    "TrackLength_m", "NumCorners", "CornerDensity",
-    "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
-    "WindSpeed", "Altitude_m", "DRSZones"
-]
-
-CAT_FEATURES = [
-    "Driver", "Team", "Compound", "Event", "Session",
-    "QualiSegment", "CircuitName", "Country",
-    "TrackType", "LapSpeedClass"
-]
-
-# ----------------------------
-# Prediction endpoint
+# Prediction
 # ----------------------------
 @app.post("/predict")
 def predict_quali(req: QualiRequest):
@@ -102,7 +87,7 @@ def predict_quali(req: QualiRequest):
 
     row = row.iloc[0]
 
-    input_data = {
+    raw = {
         "Driver": driver_code,
         "Team": req.team,
         "Compound": req.compound,
@@ -129,13 +114,15 @@ def predict_quali(req: QualiRequest):
         "DRSZones": row["DRSZones"],
     }
 
-    X = pd.DataFrame([input_data], columns=EXPECTED_FEATURES)
+    # Build EXACT feature order
+    X = pd.DataFrame([[raw.get(f) for f in FEATURE_NAMES]], columns=FEATURE_NAMES)
 
-    # Critical CatBoost safety
-    for col in CAT_FEATURES:
+    # Cast ONLY model-defined categorical features
+    for idx in CAT_FEATURE_IDX:
+        col = FEATURE_NAMES[idx]
         X[col] = X[col].fillna("UNKNOWN").astype(str)
 
-    predicted_lap_time = float(model.predict(X)[0])
+    prediction = float(model.predict(X)[0])
 
     real_row = real_2025[
         (real_2025["driver"] == driver_code) &
@@ -148,16 +135,12 @@ def predict_quali(req: QualiRequest):
         else None
     )
 
-    delta = (
-        round(predicted_lap_time - real_time, 3)
-        if real_time is not None
-        else None
-    )
+    delta = round(prediction - real_time, 3) if real_time else None
 
     return {
         "driver": driver_code,
         "event": req.event,
-        "predicted_lap_time_sec": round(predicted_lap_time, 3),
+        "predicted_lap_time_sec": round(prediction, 3),
         "real_lap_time_sec": round(real_time, 3) if real_time else None,
         "delta_sec": delta
     }
