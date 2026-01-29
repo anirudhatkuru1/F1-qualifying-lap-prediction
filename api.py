@@ -5,7 +5,7 @@ import pandas as pd
 from catboost import CatBoostRegressor
 
 # ----------------------------
-# Driver name → 3-letter code
+# Driver mapping
 # ----------------------------
 DRIVER_NAME_TO_CODE = {
     "Lando Norris": "NOR",
@@ -32,7 +32,7 @@ DRIVER_NAME_TO_CODE = {
 }
 
 # ----------------------------
-# App setup
+# App
 # ----------------------------
 app = FastAPI()
 
@@ -46,10 +46,10 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"message": "F1 Qualifying Prediction API is running 🚀"}
+    return {"status": "F1 Qualifying API running"}
 
 # ----------------------------
-# Load model + data ONCE
+# Load artifacts
 # ----------------------------
 model = CatBoostRegressor()
 model.load_model("quali_q3_delta_model.cbm")
@@ -69,7 +69,7 @@ class QualiRequest(BaseModel):
     session: str = "Q"
 
 # ----------------------------
-# Feature order (FROZEN)
+# Feature config
 # ----------------------------
 EXPECTED_FEATURES = [
     "Driver", "Team", "Compound", "Event", "Session", "QualiSegment",
@@ -80,7 +80,6 @@ EXPECTED_FEATURES = [
     "WindSpeed", "Altitude_m", "DRSZones"
 ]
 
-# Categorical columns (must be str)
 CAT_FEATURES = [
     "Driver", "Team", "Compound", "Event", "Session",
     "QualiSegment", "CircuitName", "Country",
@@ -93,21 +92,16 @@ CAT_FEATURES = [
 @app.post("/predict")
 def predict_quali(req: QualiRequest):
 
-    # Driver mapping
     driver_code = DRIVER_NAME_TO_CODE.get(req.driver)
     if not driver_code:
         return {"error": "Unknown driver"}
 
-    # Circuit lookup
     row = medians[medians["Event"] == req.event]
     if row.empty:
         return {"error": "Event not found"}
 
     row = row.iloc[0]
 
-    # ----------------------------
-    # Build input row
-    # ----------------------------
     input_data = {
         "Driver": driver_code,
         "Team": req.team,
@@ -115,12 +109,10 @@ def predict_quali(req: QualiRequest):
         "Event": req.event,
         "Session": req.session,
         "QualiSegment": req.quali_segment,
-
         "CircuitName": row["CircuitName"],
         "Country": row["Country"],
         "TrackType": row["TrackType"],
         "LapSpeedClass": row["LapSpeedClass"],
-
         "TyreLife": 2,
         "SpeedI1": row["SpeedI1"],
         "SpeedI2": row["SpeedI2"],
@@ -139,23 +131,12 @@ def predict_quali(req: QualiRequest):
 
     X = pd.DataFrame([input_data], columns=EXPECTED_FEATURES)
 
-    # ----------------------------
-    # FIX: cast categorical → str
-    # ----------------------------
+    # Critical CatBoost safety
     for col in CAT_FEATURES:
-        X[col] = X[col].astype(str)
+        X[col] = X[col].fillna("UNKNOWN").astype(str)
 
-    # ----------------------------
-    # Predict delta
-    # ----------------------------
-    predicted_delta = float(model.predict(X)[0])
+    predicted_lap_time = float(model.predict(X)[0])
 
-    session_median = float(row["SessionMedianLap"])
-    predicted_lap_time = session_median + predicted_delta
-
-    # ----------------------------
-    # Real 2025 lap lookup
-    # ----------------------------
     real_row = real_2025[
         (real_2025["driver"] == driver_code) &
         (real_2025["race"] == req.event)
