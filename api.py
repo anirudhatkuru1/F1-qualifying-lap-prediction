@@ -4,9 +4,6 @@ from pydantic import BaseModel
 import pandas as pd
 from catboost import CatBoostRegressor
 
-# ----------------------------
-# Driver name → 3-letter code
-# ----------------------------
 DRIVER_NAME_TO_CODE = {
     "Lando Norris": "NOR",
     "Max Verstappen": "VER",
@@ -31,12 +28,24 @@ DRIVER_NAME_TO_CODE = {
     "Jack Doohan": "DOO"
 }
 
+CAT_FEATURES = [
+    "Driver", "Team", "Compound", "Event", "Session",
+    "QualiSegment", "CircuitName", "Country",
+    "TrackType", "LapSpeedClass"
+]
+
+EXPECTED_FEATURES = CAT_FEATURES + [
+    "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
+    "TrackLength_m", "NumCorners", "CornerDensity",
+    "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
+    "WindSpeed", "Altitude_m", "DRSZones"
+]
+
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -45,18 +54,13 @@ app.add_middleware(
 def root():
     return {"message": "F1 Qualifying Prediction API is running 🚀"}
 
-# ----------------------------
-# Load model + data ONCE
-# ----------------------------
+# Load once
 model = CatBoostRegressor()
 model.load_model("quali_q3_delta_model.cbm")
 
 medians = pd.read_csv("circuit_medians.csv")
 real_2025 = pd.read_csv("real_lap_time_2025.csv")
 
-# ----------------------------
-# Request schema
-# ----------------------------
 class QualiRequest(BaseModel):
     driver: str
     team: str
@@ -65,19 +69,6 @@ class QualiRequest(BaseModel):
     compound: str = "SOFT"
     session: str = "Q"
 
-EXPECTED_FEATURES = [
-    "Driver", "Team", "Compound", "Event", "Session", "QualiSegment",
-    "CircuitName", "Country", "TrackType", "LapSpeedClass",
-    "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
-    "TrackLength_m", "NumCorners", "CornerDensity",
-    "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
-    "WindSpeed", "Altitude_m", "DRSZones"
-]
-
-
-# ----------------------------
-# Prediction endpoint
-# ----------------------------
 @app.post("/predict")
 def predict_quali(req: QualiRequest):
 
@@ -91,9 +82,6 @@ def predict_quali(req: QualiRequest):
 
     row = row.iloc[0]
 
-    # ----------------------------
-    # Build model input
-    # ----------------------------
     input_data = {
         "Driver": driver_code,
         "Team": req.team,
@@ -106,9 +94,6 @@ def predict_quali(req: QualiRequest):
         "Country": row["Country"],
         "TrackType": row["TrackType"],
         "LapSpeedClass": row["LapSpeedClass"],
-
-        "Driver_Track": f"{driver_code}_{row['CircuitName']}",
-        "Team_Track": f"{req.team}_{row['CircuitName']}",
 
         "TyreLife": 2,
         "SpeedI1": row["SpeedI1"],
@@ -128,17 +113,13 @@ def predict_quali(req: QualiRequest):
 
     X = pd.DataFrame([input_data], columns=EXPECTED_FEATURES)
 
-    # ----------------------------
-    # Predict DELTA
-    # ----------------------------
-    predicted_delta = float(model.predict(X)[0])
+    predicted_delta = float(
+        model.predict(X, cat_features=CAT_FEATURES)[0]
+    )
 
     session_median = row["SessionMedianLap"]
     predicted_lap_time = session_median + predicted_delta
 
-    # ----------------------------
-    # 2025 real lap lookup
-    # ----------------------------
     real_row = real_2025[
         (real_2025["driver"] == driver_code) &
         (real_2025["race"] == req.event)
@@ -160,6 +141,6 @@ def predict_quali(req: QualiRequest):
         "driver": driver_code,
         "event": req.event,
         "predicted_lap_time_sec": round(predicted_lap_time, 3),
-        "real_lap_time_sec": round(real_time, 3) if real_time else None,
+        "real_lap_time_sec": round(real_time, 3) if real_time is not None else None,
         "delta_sec": delta
     }
