@@ -113,9 +113,8 @@ def predict_quali(req: QualiRequest):
 
     X = pd.DataFrame([input_data], columns=EXPECTED_FEATURES)
 
-    predicted_delta = float(
-        model.predict(X, cat_features=CAT_FEATURES)[0]
-    )
+    predicted_delta = float(model.predict(X)[0])
+
 
     session_median = row["SessionMedianLap"]
     predicted_lap_time = session_median + predicted_delta
