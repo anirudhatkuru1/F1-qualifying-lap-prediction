@@ -156,13 +156,14 @@ async function predict() {
   const event = document.getElementById("event").value;
   const quali_segment = document.getElementById("segment").value;
 
-  const response = await fetch("https://f1-qualifying-lap-prediction.onrender.com/predict", {
+  const response = await fetch("/predict", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ driver, team, event, quali_segment })
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (data.error) {
     document.getElementById("result").innerText = "Error: " + data.error;
@@ -173,15 +174,8 @@ async function predict() {
   document.getElementById("result").innerText =
     `Predicted lap time: ${data.predicted_lap_time_sec} sec`;
 
-  if (data.real_lap_time_sec !== null) {
-    const delta = (data.predicted_lap_time_sec - data.real_lap_time_sec).toFixed(3);
-    const sign = delta > 0 ? "+" : "";
-    document.getElementById("real-time").innerText =
-      `Actual lap time: ${data.real_lap_time_sec} sec\nDifference: ${sign}${delta} sec`;
-  } else {
-    document.getElementById("real-time").innerText =
-      "Actual lap time: Not available (race not completed)";
-  }
+  document.getElementById("real-time").innerText =
+    "Actual lap time: Not available (race not completed)";
 }
 </script>
 
