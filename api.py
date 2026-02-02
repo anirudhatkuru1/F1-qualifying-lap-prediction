@@ -1,9 +1,13 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import pandas as pd
-from catboost import CatBoostRegressor
+import pathlib
+from catboost import CatBoostRegressor, Pool
 
 app = FastAPI()
+
+BASE_DIR = pathlib.Path(__file__).parent
 
 # -----------------------------
 # Load model & data ONCE
@@ -13,6 +17,9 @@ model.load_model("quali_q3_delta_model.cbm")
 
 medians = pd.read_csv("circuit_medians.csv")
 
+# -----------------------------
+# Feature definitions (MUST match training)
+# -----------------------------
 categorical_features = [
     "Driver", "Team", "Compound", "Event", "Session",
     "QualiSegment", "CircuitName", "Country",
@@ -28,6 +35,7 @@ numeric_features = [
 ]
 
 features = categorical_features + numeric_features
+cat_feature_indices = [features.index(c) for c in categorical_features]
 
 # -----------------------------
 # Request schema
@@ -48,7 +56,7 @@ def predict_quali_time(driver, team, event, quali_segment):
     ]
 
     if row.empty:
-        raise ValueError("No median data found")
+        raise ValueError("No median data found for this event/segment")
 
     row = row.iloc[0]
     session_median = row["SessionMedianLap"]
@@ -87,8 +95,17 @@ def predict_quali_time(driver, team, event, quali_segment):
 
     X = pd.DataFrame([input_data])[features]
 
-    predicted_delta = model.predict(X)[0]
+    pool = Pool(X, cat_features=cat_feature_indices)
+    predicted_delta = model.predict(pool)[0]
+
     return round(session_median + predicted_delta, 3)
+
+# -----------------------------
+# Serve frontend
+# -----------------------------
+@app.get("/", response_class=HTMLResponse)
+def serve_frontend():
+    return (BASE_DIR / "index.html").read_text()
 
 # -----------------------------
 # API endpoint
@@ -107,4 +124,4 @@ def predict(req: PredictRequest):
             "real_lap_time_sec": None
         }
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": str(e)}    
