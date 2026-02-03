@@ -1,49 +1,35 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 import pandas as pd
 from catboost import CatBoostRegressor
-import pathlib
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 # -----------------------------
-# CORS (browser-safe)
-# -----------------------------
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],   # includes OPTIONS
-    allow_headers=["*"],
-)
-
-BASE_DIR = pathlib.Path(__file__).parent
-
-# -----------------------------
-# Load model & data ONCE
+# Load model & data
 # -----------------------------
 model = CatBoostRegressor()
 model.load_model("quali_q3_delta_model.cbm")
 
 medians = pd.read_csv("circuit_medians.csv")
+driver_stats = pd.read_csv("driver_track_stats.csv")
+team_stats = pd.read_csv("team_track_stats.csv")
 
-categorical_features = [
+# -----------------------------
+# Feature order (MUST MATCH TRAINING)
+# -----------------------------
+features = [
     "Driver", "Team", "Compound", "Event", "Session",
     "QualiSegment", "CircuitName", "Country",
     "TrackType", "LapSpeedClass",
-    "Driver_Track", "Team_Track"
-]
-
-numeric_features = [
+    "Driver_Track", "Team_Track",
     "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
     "TrackLength_m", "NumCorners", "CornerDensity",
     "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
-    "WindSpeed", "Altitude_m", "DRSZones"
+    "WindSpeed", "Altitude_m", "DRSZones",
+    "DriverTrackAvgDelta", "DriverTrackStdDelta",
+    "TeamTrackAvgDelta", "TeamTrackStdDelta"
 ]
-
-features = categorical_features + numeric_features
 
 # -----------------------------
 # Request schema
@@ -55,36 +41,34 @@ class PredictRequest(BaseModel):
     quali_segment: str
 
 # -----------------------------
-# Prediction logic
+# Prediction
 # -----------------------------
-def predict_quali_time(driver, team, event, quali_segment):
+@app.post("/predict")
+def predict(req: PredictRequest):
     row = medians[
-        (medians["Event"] == event) &
-        (medians["QualiSegment"] == quali_segment)
-    ]
+        (medians["Event"] == req.event) &
+        (medians["QualiSegment"] == req.quali_segment)
+    ].iloc[0]
 
-    if row.empty:
-        raise ValueError("No median data found")
+    driver_track = f"{req.driver}_{row['CircuitName']}"
+    team_track   = f"{req.team}_{row['CircuitName']}"
 
-    row = row.iloc[0]
-    session_median = row["SessionMedianLap"]
+    drow = driver_stats[driver_stats["Driver_Track"] == driver_track]
+    trow = team_stats[team_stats["Team_Track"] == team_track]
 
     input_data = {
-        "Driver": driver,
-        "Team": team,
+        "Driver": req.driver,
+        "Team": req.team,
         "Compound": "SOFT",
-        "Event": event,
+        "Event": req.event,
         "Session": "Q",
-        "QualiSegment": quali_segment,
-
+        "QualiSegment": req.quali_segment,
         "CircuitName": row["CircuitName"],
         "Country": row["Country"],
         "TrackType": row["TrackType"],
         "LapSpeedClass": row["LapSpeedClass"],
-
-        "Driver_Track": f"{driver}_{row['CircuitName']}",
-        "Team_Track": f"{team}_{row['CircuitName']}",
-
+        "Driver_Track": driver_track,
+        "Team_Track": team_track,
         "TyreLife": 2,
         "SpeedI1": row["SpeedI1"],
         "SpeedI2": row["SpeedI2"],
@@ -99,39 +83,15 @@ def predict_quali_time(driver, team, event, quali_segment):
         "WindSpeed": row["WindSpeed"],
         "Altitude_m": row["Altitude_m"],
         "DRSZones": row["DRSZones"],
+        "DriverTrackAvgDelta": float(drow["DriverTrackAvgDelta"].iloc[0]) if not drow.empty else 0,
+        "DriverTrackStdDelta": float(drow["DriverTrackStdDelta"].iloc[0]) if not drow.empty else 0.15,
+        "TeamTrackAvgDelta": float(trow["TeamTrackAvgDelta"].iloc[0]) if not trow.empty else 0,
+        "TeamTrackStdDelta": float(trow["TeamTrackStdDelta"].iloc[0]) if not trow.empty else 0.15,
     }
 
     X = pd.DataFrame([input_data])[features]
-    predicted_delta = model.predict(X)[0]
+    delta = model.predict(X)[0]
 
-    return round(session_median + predicted_delta, 3)
-
-# -----------------------------
-# Serve frontend (optional)
-# -----------------------------
-@app.get("/", response_class=HTMLResponse)
-def serve_frontend():
-    return (BASE_DIR / "index.html").read_text()
-
-# -----------------------------
-# API endpoint (BOTH routes)
-# -----------------------------
-@app.post("/predict")
-@app.post("/predict/")
-def predict(req: PredictRequest):
-    try:
-        lap_time = predict_quali_time(
-            req.driver,
-            req.team,
-            req.event,
-            req.quali_segment
-        )
-        return JSONResponse({
-            "predicted_lap_time_sec": lap_time,
-            "real_lap_time_sec": None
-        })
-    except Exception as e:
-        return JSONResponse(
-            status_code=400,
-            content={"error": str(e)}
-        )
+    return {
+        "predicted_lap_time_sec": round(row["SessionMedianLap"] + delta, 3)
+    }
