@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
@@ -9,13 +9,13 @@ import pathlib
 app = FastAPI()
 
 # -----------------------------
-# CORS (IMPORTANT)
+# CORS (browser-safe)
 # -----------------------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["*"],   # includes OPTIONS
     allow_headers=["*"],
 )
 
@@ -107,16 +107,17 @@ def predict_quali_time(driver, team, event, quali_segment):
     return round(session_median + predicted_delta, 3)
 
 # -----------------------------
-# Serve frontend
+# Serve frontend (optional)
 # -----------------------------
 @app.get("/", response_class=HTMLResponse)
 def serve_frontend():
     return (BASE_DIR / "index.html").read_text()
 
 # -----------------------------
-# API endpoint
+# API endpoint (BOTH routes)
 # -----------------------------
 @app.post("/predict")
+@app.post("/predict/")
 def predict(req: PredictRequest):
     try:
         lap_time = predict_quali_time(
@@ -125,10 +126,12 @@ def predict(req: PredictRequest):
             req.event,
             req.quali_segment
         )
-        return {
+        return JSONResponse({
             "predicted_lap_time_sec": lap_time,
             "real_lap_time_sec": None
-        }
+        })
     except Exception as e:
-        return {"error": str(e)}
-    
+        return JSONResponse(
+            status_code=400,
+            content={"error": str(e)}
+        )
