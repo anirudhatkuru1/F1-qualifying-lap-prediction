@@ -1,5 +1,5 @@
 import pandas as pd
-from catboost import CatBoostRegressor
+from catboost import CatBoostRegressor, Pool
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -16,20 +16,26 @@ driver_stats = pd.read_csv("driver_track_stats.csv")
 team_stats = pd.read_csv("team_track_stats.csv")
 
 # -----------------------------
-# Feature order (MUST MATCH TRAINING)
+# Feature config (MUST MATCH TRAINING)
 # -----------------------------
-features = [
+categorical_features = [
     "Driver", "Team", "Compound", "Event", "Session",
     "QualiSegment", "CircuitName", "Country",
     "TrackType", "LapSpeedClass",
-    "Driver_Track", "Team_Track",
-    "TyreLife", "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
+    "Driver_Track", "Team_Track"
+]
+
+numeric_features = [
+    "TyreLife",
+    "SpeedI1", "SpeedI2", "SpeedFL", "SpeedST",
     "TrackLength_m", "NumCorners", "CornerDensity",
     "AvgCornerSpacing_m", "AirTemp", "TrackTemp",
     "WindSpeed", "Altitude_m", "DRSZones",
     "DriverTrackAvgDelta", "DriverTrackStdDelta",
     "TeamTrackAvgDelta", "TeamTrackStdDelta"
 ]
+
+features = categorical_features + numeric_features
 
 # -----------------------------
 # Request schema
@@ -41,10 +47,11 @@ class PredictRequest(BaseModel):
     quali_segment: str
 
 # -----------------------------
-# Prediction
+# Prediction endpoint
 # -----------------------------
 @app.post("/predict")
 def predict(req: PredictRequest):
+
     row = medians[
         (medians["Event"] == req.event) &
         (medians["QualiSegment"] == req.quali_segment)
@@ -83,15 +90,22 @@ def predict(req: PredictRequest):
         "WindSpeed": row["WindSpeed"],
         "Altitude_m": row["Altitude_m"],
         "DRSZones": row["DRSZones"],
-        "DriverTrackAvgDelta": float(drow["DriverTrackAvgDelta"].iloc[0]) if not drow.empty else 0,
+        "DriverTrackAvgDelta": float(drow["DriverTrackAvgDelta"].iloc[0]) if not drow.empty else 0.0,
         "DriverTrackStdDelta": float(drow["DriverTrackStdDelta"].iloc[0]) if not drow.empty else 0.15,
-        "TeamTrackAvgDelta": float(trow["TeamTrackAvgDelta"].iloc[0]) if not trow.empty else 0,
+        "TeamTrackAvgDelta": float(trow["TeamTrackAvgDelta"].iloc[0]) if not trow.empty else 0.0,
         "TeamTrackStdDelta": float(trow["TeamTrackStdDelta"].iloc[0]) if not trow.empty else 0.15,
     }
 
     X = pd.DataFrame([input_data])[features]
-    delta = model.predict(X)[0]
+
+    pool = Pool(
+        X,
+        cat_features=categorical_features
+    )
+
+    delta = model.predict(pool)[0]
+    lap_time = row["SessionMedianLap"] + delta
 
     return {
-        "predicted_lap_time_sec": round(row["SessionMedianLap"] + delta, 3)
+        "predicted_lap_time_sec": round(lap_time, 3)
     }
