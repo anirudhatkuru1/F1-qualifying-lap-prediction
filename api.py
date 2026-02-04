@@ -1,9 +1,20 @@
 import pandas as pd
 from catboost import CatBoostRegressor, Pool
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI()
+
+# -----------------------------
+# CORS (REQUIRED for Vercel)
+# -----------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # -----------------------------
 # Load model & data
@@ -49,13 +60,29 @@ class PredictRequest(BaseModel):
 # -----------------------------
 # Prediction endpoint
 # -----------------------------
+
+@app.get("/metadata")
+def get_metadata():
+    return {
+        "drivers": sorted(driver_stats["Driver"].unique().tolist()),
+        "teams": sorted(team_stats["Team"].unique().tolist()),
+        "events": sorted(medians["Event"].unique().tolist()),
+        "quali_segments": ["Q1", "Q2", "Q3"]
+    }
+
+
 @app.post("/predict")
 def predict(req: PredictRequest):
 
-    row = medians[
+    row_df = medians[
         (medians["Event"] == req.event) &
         (medians["QualiSegment"] == req.quali_segment)
-    ].iloc[0]
+    ]
+
+    if row_df.empty:
+        return {"error": "No median data for this event / segment"}
+
+    row = row_df.iloc[0]
 
     driver_track = f"{req.driver}_{row['CircuitName']}"
     team_track   = f"{req.team}_{row['CircuitName']}"
@@ -98,10 +125,7 @@ def predict(req: PredictRequest):
 
     X = pd.DataFrame([input_data])[features]
 
-    pool = Pool(
-        X,
-        cat_features=categorical_features
-    )
+    pool = Pool(X, cat_features=categorical_features)
 
     delta = model.predict(pool)[0]
     lap_time = row["SessionMedianLap"] + delta

@@ -4,183 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 Qualifying Lap Predictor</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    h1 {
-      margin-top: 30px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      text-shadow: 0 0 10px #00ffea;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    select, input {
-      width: 250px;
-      padding: 8px 12px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      box-shadow: 0 0 8px rgba(0, 255, 234, 0.4);
-      background-color: #142a47;
-      color: #e0e0e0;
-      transition: box-shadow 0.3s ease;
-    }
-    select:hover, input:hover, select:focus, input:focus {
-      box-shadow: 0 0 12px #00fff0;
-      outline: none;
-    }
-
-    button {
-      margin-top: 25px;
-      padding: 12px 25px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      background: #00ffea;
-      border: none;
-      border-radius: 30px;
-      color: #142a47;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ffea;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    button:hover {
-      background: #00d6b8;
-      color: #fff;
-    }
-
-    #result, #real-time {
-      margin-top: 30px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      text-align: center;
-      white-space: pre-line;
-      text-shadow: 0 0 7px #00fff0;
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      select, input {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 <body>
-  <h1>F1 Qualifying Lap Predictor - 2025 Season</h1>
 
-  <label for="driver">Driver:</label>
-  <select id="driver" name="driver" aria-label="Select Driver">
-    <option>Lando Norris</option>
-    <option>Max Verstappen</option>
-    <option>Oscar Piastri</option>
-    <option>George Russell</option>
-    <option>Charles Leclerc</option>
-    <option>Lewis Hamilton</option>
-    <option>Andrea Kimi Antonelli</option>
-    <option>Alexander Albon</option>
-    <option>Carlos Sainz</option>
-    <option>Fernando Alonso</option>
-    <option>Nico Hulkenberg</option>
-    <option>Isack Hadjar</option>
-    <option>Oliver Bearman</option>
-    <option>Liam Lawson</option>
-    <option>Esteban Ocon</option>
-    <option>Lance Stroll</option>
-    <option>Yuki Tsunoda</option>
-    <option>Pierre Gasly</option>
-    <option>Gabriel Bortoleto</option>
-    <option>Franco Colapinto</option>
-    <option>Jack Doohan</option>
-  </select>
+<h1>F1 Qualifying Lap Predictor</h1>
 
-  <label for="team">Team:</label>
-  <input id="team" name="team" type="text" value="Red Bull Racing" aria-label="Enter Team" />
+<label>Driver</label>
+<select id="driver"></select>
 
-  <label for="event">Race Event:</label>
-  <select id="event" name="event" aria-label="Select Race Event">
-    <option>Australian Grand Prix</option>
-    <option>Bahrain Grand Prix</option>
-    <option>Saudi Arabian Grand Prix</option>
-    <option>Chinese Grand Prix</option>
-    <option>Monaco Grand Prix</option>
-    <option>Spanish Grand Prix</option>
-    <option>Canadian Grand Prix</option>
-    <option>British Grand Prix</option>
-    <option>Hungarian Grand Prix</option>
-    <option>Belgian Grand Prix</option>
-    <option>Dutch Grand Prix</option>
-    <option>Italian Grand Prix</option>
-    <option>Singapore Grand Prix</option>
-    <option>Japanese Grand Prix</option>
-    <option>Qatar Grand Prix</option>
-    <option>United States Grand Prix</option>
-    <option>Mexico City Grand Prix</option>
-    <option>Brazilian Grand Prix</option>
-    <option>Abu Dhabi Grand Prix</option>
-  </select>
+<label>Team</label>
+<select id="team"></select>
 
-  <label for="segment">Qualifying Segment:</label>
-  <select id="segment" name="segment" aria-label="Select Qualifying Segment">
-    <option>Q1</option>
-    <option>Q2</option>
-    <option selected>Q3</option>
-  </select>
+<label>Event</label>
+<select id="event"></select>
 
-  <button onclick="predict()">Predict Lap Time</button>
+<label>Qualifying Segment</label>
+<select id="segment">
+  <option>Q1</option>
+  <option>Q2</option>
+  <option selected>Q3</option>
+</select>
 
-  <h2 id="result"></h2>
-  <h3 id="real-time"></h3>
+<br><br>
+<button onclick="predict()">Predict</button>
+
+<div id="result"></div>
 
 <script>
-async function predict() {
-  const driver = document.getElementById("driver").value;
-  const team = document.getElementById("team").value;
-  const event = document.getElementById("event").value;
-  const quali_segment = document.getElementById("segment").value;
+async function loadMetadata() {
+  const res = await fetch("https://f1-qualifying-lap-prediction.onrender.com/metadata");
+  const data = await res.json();
 
-  const response = await fetch(
-  "https://f1-qualifying-lap-prediction.onrender.com/predict",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ driver, team, event, quali_segment })
-  }
-);
-
-
-  const data = await response.json();
-  console.log(data);
-
-  if (data.error) {
-    document.getElementById("result").innerText = "Error: " + data.error;
-    document.getElementById("real-time").innerText = "";
-    return;
-  }
-
-  document.getElementById("result").innerText =
-    `Predicted lap time: ${data.predicted_lap_time_sec} sec`;
-
-  document.getElementById("real-time").innerText =
-    "Actual lap time: Not available (race not completed)";
+  driver.innerHTML = data.drivers.map(d => `<option>${d}</option>`).join("");
+  team.innerHTML   = data.teams.map(t => `<option>${t}</option>`).join("");
+  event.innerHTML  = data.events.map(e => `<option>${e}</option>`).join("");
 }
+
+async function predict() {
+  const res = await fetch(
+    "https://f1-qualifying-lap-prediction.onrender.com/predict",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        driver: driver.value,
+        team: team.value,
+        event: event.value,
+        quali_segment: segment.value
+      })
+    }
+  );
+
+  const data = await res.json();
+  result.innerText = data.predicted_lap_time_sec
+    ? `Predicted lap time: ${data.predicted_lap_time_sec} sec`
+    : `Error: ${data.error}`;
+}
+
+loadMetadata();
 </script>
 
 </body>
