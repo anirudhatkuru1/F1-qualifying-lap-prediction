@@ -31,34 +31,45 @@
 <div id="result"></div>
 
 <script>
+const API_BASE = "https://f1-qualifying-lap-prediction.onrender.com";
+
+const driverSelect  = document.getElementById("driver");
+const teamSelect    = document.getElementById("team");
+const eventSelect   = document.getElementById("event");
+const segmentSelect = document.getElementById("segment");
+const resultDiv     = document.getElementById("result");
+
 async function loadMetadata() {
-  const res = await fetch("https://f1-qualifying-lap-prediction.onrender.com/metadata");
+  const res = await fetch(`${API_BASE}/metadata`);
   const data = await res.json();
 
-  driver.innerHTML = data.drivers.map(d => `<option>${d}</option>`).join("");
-  team.innerHTML   = data.teams.map(t => `<option>${t}</option>`).join("");
-  event.innerHTML  = data.events.map(e => `<option>${e}</option>`).join("");
+  driverSelect.innerHTML = data.drivers.map(d => `<option>${d}</option>`).join("");
+  teamSelect.innerHTML   = data.teams.map(t => `<option>${t}</option>`).join("");
+  eventSelect.innerHTML  = data.events.map(e => `<option>${e}</option>`).join("");
 }
 
 async function predict() {
-  const res = await fetch(
-    "https://f1-qualifying-lap-prediction.onrender.com/predict",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        driver: driver.value,
-        team: team.value,
-        event: event.value,
-        quali_segment: segment.value
-      })
-    }
-  );
+  resultDiv.innerText = "Predicting...";
+
+  const res = await fetch(`${API_BASE}/predict`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      driver: driverSelect.value,
+      team: teamSelect.value,
+      event: eventSelect.value,
+      quali_segment: segmentSelect.value
+    })
+  });
 
   const data = await res.json();
-  result.innerText = data.predicted_lap_time_sec
-    ? `Predicted lap time: ${data.predicted_lap_time_sec} sec`
-    : `Error: ${data.error}`;
+
+  if (data.error) {
+    resultDiv.innerText = "Error: " + data.error;
+    return;
+  }
+
+  resultDiv.innerText = `Predicted lap time: ${data.predicted_lap_time_sec} sec`;
 }
 
 loadMetadata();

@@ -7,7 +7,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # -----------------------------
-# CORS (REQUIRED for Vercel)
+# CORS
 # -----------------------------
 app.add_middleware(
     CORSMiddleware,
@@ -17,7 +17,7 @@ app.add_middleware(
 )
 
 # -----------------------------
-# Load model & data
+# Load model & data ONCE
 # -----------------------------
 model = CatBoostRegressor()
 model.load_model("quali_q3_delta_model.cbm")
@@ -58,9 +58,8 @@ class PredictRequest(BaseModel):
     quali_segment: str
 
 # -----------------------------
-# Prediction endpoint
+# Metadata endpoint
 # -----------------------------
-
 @app.get("/metadata")
 def get_metadata():
     return {
@@ -70,7 +69,9 @@ def get_metadata():
         "quali_segments": ["Q1", "Q2", "Q3"]
     }
 
-
+# -----------------------------
+# Prediction endpoint
+# -----------------------------
 @app.post("/predict")
 def predict(req: PredictRequest):
 
@@ -97,39 +98,44 @@ def predict(req: PredictRequest):
         "Event": req.event,
         "Session": "Q",
         "QualiSegment": req.quali_segment,
+
         "CircuitName": row["CircuitName"],
         "Country": row["Country"],
         "TrackType": row["TrackType"],
         "LapSpeedClass": row["LapSpeedClass"],
+
         "Driver_Track": driver_track,
         "Team_Track": team_track,
+
         "TyreLife": 2,
+
         "SpeedI1": row["SpeedI1"],
         "SpeedI2": row["SpeedI2"],
         "SpeedFL": row["SpeedFL"],
         "SpeedST": row["SpeedST"],
+
         "TrackLength_m": row["TrackLength_m"],
         "NumCorners": row["NumCorners"],
         "CornerDensity": row["CornerDensity"],
         "AvgCornerSpacing_m": row["AvgCornerSpacing_m"],
+
         "AirTemp": row["AirTemp"],
         "TrackTemp": row["TrackTemp"],
         "WindSpeed": row["WindSpeed"],
         "Altitude_m": row["Altitude_m"],
         "DRSZones": row["DRSZones"],
+
         "DriverTrackAvgDelta": float(drow["DriverTrackAvgDelta"].iloc[0]) if not drow.empty else 0.0,
         "DriverTrackStdDelta": float(drow["DriverTrackStdDelta"].iloc[0]) if not drow.empty else 0.15,
+
         "TeamTrackAvgDelta": float(trow["TeamTrackAvgDelta"].iloc[0]) if not trow.empty else 0.0,
         "TeamTrackStdDelta": float(trow["TeamTrackStdDelta"].iloc[0]) if not trow.empty else 0.15,
     }
 
     X = pd.DataFrame([input_data])[features]
-
     pool = Pool(X, cat_features=categorical_features)
 
     delta = model.predict(pool)[0]
     lap_time = row["SessionMedianLap"] + delta
 
-    return {
-        "predicted_lap_time_sec": round(lap_time, 3)
-    }
+    return {"predicted_lap_time_sec": round(lap_time, 3)}
